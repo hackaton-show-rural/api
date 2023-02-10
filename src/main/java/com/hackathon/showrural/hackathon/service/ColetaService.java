@@ -31,6 +31,7 @@ public class ColetaService {
     public Coleta save(Coleta coleta){
         try{
             System.out.println(coleta);
+            coleta.setVelVento(coleta.getVelVento() * 3.6);
             coletaRepository.save(coleta);
         }catch (Exception exception) {
             System.out.println(exception.getMessage());

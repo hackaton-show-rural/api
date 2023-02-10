@@ -6,6 +6,7 @@ import com.hackathon.showrural.hackathon.model.Talhao;
 import com.hackathon.showrural.hackathon.model.TalhaoData;
 import com.hackathon.showrural.hackathon.repository.TalhaoRepository;
 import com.hackathon.showrural.hackathon.service.ColetaService;
+import com.hackathon.showrural.hackathon.service.TalhaoDataService;
 import com.hackathon.showrural.hackathon.service.TalhaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class TalhaoController{
     TalhaoService talhaoService;
 
     @Autowired
-    ColetaService coletaService;
+    TalhaoDataService talhaoDataService;
 
     @GetMapping("/")
     public ResponseEntity<List<Talhao>> getAll(){
@@ -35,11 +36,6 @@ public class TalhaoController{
 
     @GetMapping("/{id}")
     public TalhaoData talhaoData(@PathVariable Long id){
-        TalhaoData talhaoData = new TalhaoData();
-        talhaoData.setTalhao(talhaoService.getById(id));
-        List<Coleta> coletasByTalhao = coletaService.findAllByTalhaoId(id);
-        talhaoData.setColetas(coletasByTalhao);
-        talhaoData.setUltimaColeta(coletaService.getLast(coletasByTalhao));
-        return talhaoData;
+        return talhaoDataService.getTalhaoData(id);
     }
 }

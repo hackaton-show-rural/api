@@ -7,15 +7,15 @@ import lombok.Data;
 @Data
 @Entity
 public class ColetaIdeal extends Persistable {
-    private Integer temperaturaMinima;
-    private Integer temperaturaIdeal;
-    private Integer temperaturaMaxima;
-    private Integer umidadeRelativaMinima;
-    private Integer umidadeRelativaIdealMinima;
-    private Integer umidadeRelativaIdealMaxima;
-    private Integer umidadeRelativaMaxima;
-    private Integer velocidadeVentoMinima;
-    private Integer velocidadeVentoMaxima;
+    private double temperaturaMinima;
+    private double temperaturaIdeal;
+    private double temperaturaMaxima;
+    private double umidadeRelativaMinima;
+    private double umidadeRelativaIdealMinima;
+    private double umidadeRelativaIdealMaxima;
+    private double umidadeRelativaMaxima;
+    private double velocidadeVentoMinima;
+    private double velocidadeVentoMaxima;
     private boolean chuva;
-    private Integer proximaChuvaMin;
+    private double proximaChuvaMin;
 }
