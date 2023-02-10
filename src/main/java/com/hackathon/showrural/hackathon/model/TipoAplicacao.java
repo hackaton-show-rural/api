@@ -10,4 +10,6 @@ public class TipoAplicacao extends Persistable {
     private String nome;
     @OneToOne(cascade = CascadeType.ALL)
     private ColetaIdeal coletaIdeal;
+
+
 }

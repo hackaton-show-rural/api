@@ -1,13 +1,11 @@
 package com.hackathon.showrural.hackathon.service;
 
 import com.hackathon.showrural.hackathon.model.Coleta;
-import com.hackathon.showrural.hackathon.model.TipoAplicacao;
 import com.hackathon.showrural.hackathon.repository.ColetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +13,8 @@ import java.util.Optional;
 public class ColetaService {
     @Autowired
     ColetaRepository coletaRepository;
+    @Autowired
+    TipoAplicacaoService tipoAplicacaoService;
 
     public List<Coleta> getAll() {
         return coletaRepository.findAll();
@@ -23,7 +23,6 @@ public class ColetaService {
         Optional<Coleta> coleta = coletaRepository.findById(id);
         return coleta.orElse(null);
     }
-
     public Coleta delete(Long id){
         Coleta coleta = getById(id);
         if(coleta != null) coletaRepository.delete(coleta);
@@ -38,5 +37,21 @@ public class ColetaService {
         }
         return coleta;
     }
-
+    public void finalSave(Long id) {
+        try {
+            Coleta coleta = getById(id);
+            coleta.setDataFim(LocalDateTime.now());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        coletaRepository.flush();
+    }
+    public Coleta getLast(List<Coleta> coletas){
+        if(coletas.isEmpty())
+            return null;
+        return coletas.get(coletas.size() - 1);
+    }
+    public List<Coleta> findAllByTalhaoId(Long id){
+        return coletaRepository.findAllByTalhaoId(id);
+    }
 }

@@ -23,4 +23,5 @@ public class TipoAplicacaoController {
     public ResponseEntity<TipoAplicacao> save(@RequestBody TipoAplicacao tipoAplicacao){
         return ResponseEntity.ok(tipoAplicacaoService.save(tipoAplicacao));
     }
+
 }

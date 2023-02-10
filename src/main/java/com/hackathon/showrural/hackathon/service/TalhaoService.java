@@ -15,6 +15,8 @@ import java.util.Optional;
 public class TalhaoService {
     @Autowired
     TalhaoRepository talhaoRepository;
+    @Autowired
+    ColetaService coletaService;
 
     public List<Talhao> getAll() {
         return talhaoRepository.findAll();

@@ -17,7 +17,6 @@ public class ColetaController {
     @Autowired
     ColetaService coletaService;
 
-
     @GetMapping("/")
     public ResponseEntity<List<Coleta>> getAll(){
         return ResponseEntity.ok(coletaService.getAll());
@@ -29,5 +28,9 @@ public class ColetaController {
     @PostMapping("/save")
     public ResponseEntity<Coleta> save(@RequestBody Coleta coleta){
         return ResponseEntity.ok(coletaService.save(coleta));
+    }
+    @PostMapping("/finalSave")
+    public void finalizarColeta(@RequestBody Long id){
+        coletaService.finalSave(id);
     }
 }

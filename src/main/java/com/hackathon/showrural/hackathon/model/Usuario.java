@@ -10,8 +10,7 @@ import java.util.List;
 @Data
 public class Usuario extends Persistable {
     private String nome;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_usuario")
+    @OneToOne(cascade = CascadeType.ALL)
     private TipoUsuario tipoUsuario;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Talhao> talhoes;

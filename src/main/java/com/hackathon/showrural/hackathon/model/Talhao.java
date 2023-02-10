@@ -9,6 +9,6 @@ import lombok.Data;
 @Entity
 public class Talhao extends Persistable {
     private String nome;
-    private String longitude;
-    private String latitude;
+    private double longitude;
+    private double latitude;
 }
